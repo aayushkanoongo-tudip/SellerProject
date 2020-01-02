@@ -1,0 +1,24 @@
+<body style="background-color: powderblue">
+<div class="container">
+      <h2>Add Parts to Product </h2>
+          <h>
+            <center>
+            <%= form_for @items, :html => {id: 'newItemForm'} do |f| %>
+              <br>
+              <label><h3> Part Name </h3></label>
+                <br><span class="require">*</span>
+              <%= f.text_field :name %>
+              <br>
+              <label><h3> Add Part Description </h3></label>
+                <br><span class="reqiure">*</span>
+              <%= f.text_field :desc %>
+              <br>
+              <%= f.hidden_field  :product_id %>
+              <br>
+
+              <%= f.submit %>
+
+            <% end %>
+          </center></h>
+</div>
+</body>

@@ -1,0 +1,23 @@
+<h1>Edit the product.. </h1>
+
+<%= form_for @product do |t| %>
+
+  <label>Model_no</label>
+  <%= t.number_field :model_no %>
+
+  <label>Name</label>
+  <%= t.text_field :name %>
+  <br>
+  <br>
+  <label>Quantity</label>
+  <%= t.number_field :quantity %>
+
+  <label>Price</label>
+  <%= t.number_field :price %>
+
+
+  <%= button_to "Change" %>
+
+<% end %>
+
+<%= button_to 'Back', products_path, method: :get%>

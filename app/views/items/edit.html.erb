@@ -1,0 +1,22 @@
+<body style="background-color: powderblue">
+<div class="container">
+  <h2>Edit Product Parts</h2>
+  <center>
+  <%= form_for @items, :html => {id: 'editItemForm'} do |t| %>
+
+    <label><h2>Product Part Name</h2></label><div>
+      <span class="require">*</span>
+    <%= t.text_field :name %></div>
+
+<br>
+    <label><h3>Description</h3></label><div>
+      <span class="require">*</span>
+    <%= t.text_field :desc %></div>
+<br>
+    <%= button_to "Change" %>
+<br>
+  <% end %>
+<br>
+  </center>
+</div>
+</body>

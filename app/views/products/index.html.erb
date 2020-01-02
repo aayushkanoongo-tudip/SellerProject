@@ -1,0 +1,94 @@
+<body style="background-color:powderblue">
+<div class=" container ">
+    <label><h1><b>Product Enquiry</b></h1></label>
+
+  <div align="right">
+
+    <%= link_to 'Go To Sellers Page', sellers_path  %>
+  </div>
+  <div align="left">
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >
+    Add New Product
+  </button>
+</div>
+    <center>
+      <br>
+    <table width="60%"  border="1%" style="background-color: white" id="product_Lists" autofocus="true">
+      <thead>
+      <tr>
+        <th class="text-center">Model No</th>
+        <th class="text-center">Name</th>
+        <th class="text-center">Quantity</th>
+        <th class="text-center">Price</th>
+        <th class="text-center">Image</th>
+        <th class="text-center"> Action </th>
+      </tr>
+      </thead>
+      <body>
+      <% @products.each do |product| %>
+        <tr align="center">
+<!--          <td><%#= product.item_no%> </td>-->
+          <td><%= product.model_no%></td>
+          <td><%= link_to "#{product.name}", items_path(:product_id => product.id) %> </td>
+          <td><%= product.quantity%></td>
+          <td><%= product.price%> </td>
+          <td><%= image_tag product.image.url(:thumb) %></td>
+          <td><%= link_to 'Delete', delete_products_path(id: product.id, seller_id: @seller.id), method: :delete, data: {confirm: 'Are you sure?' } %>
+
+          <button type="button" data-toggle="modal" class="editProduct" product_id=<%= product.id %> seller_id=<%= @seller.id %> >
+              Edit 
+          </button>
+          </td>
+        </tr>
+      <% end %>
+      </body>
+    </table>
+    </center>
+<br>
+    <!-- Button trigger modal -->
+
+<br>
+    <!-- Modal -->
+    <div class="modal fade" style="background-color: powderblue" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title" id="exampleModalLabel">Add New Product</h2>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+            <div class="modal-body">
+                <%= form_for @seller.products.new, url: products_path, :html => {id: 'addProductForm'}  do |f| %>
+                  <label>Model Number</label><div>
+                <span class="required">*</span>
+                <%= f.number_field :model_no, :autofocus=> true, :placeholder => 'Model Number',:class =>"form-control"%>
+            </div>
+                  <label>Name</label>
+                  <div><span class="required">*</span>
+                    <%= f.text_field :name, :autofocus=> true, :placeholder => 'Name',:class =>"form-control" %></div>
+
+                  <label>Quantity</label>
+                  <div><span class="required">*</span>
+                    <%= f.number_field :quantity, :autofocus=> true, :placeholder => 'Quantity(in kg)',:class =>"form-control"%></div>
+                  <br>
+                  <label>Price</label>
+                  <div><span class="required">*</span>
+                    <%= f.number_field :price, :autofocus=> true, :placeholder => 'Price(in Rupees)',:class =>"form-control"%></div>
+
+                  <label>  Attachment </label>
+                  <div><span class="required">*</span>
+                    <%= f.file_field :image, :required => true %></div>
+
+                  <%= f.hidden_field :seller_id %>
+                  <center>
+                  <%= f.submit "Save", class: "btn btn-primary" %>
+                  </center>
+                  </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <div id = "editProductModalBlock"></div>
+
+</div>

@@ -1,0 +1,20 @@
+<body style="background-color:powderblue">
+<div class=" container " >
+  <h2> New Seller</h2>
+  <center>
+    <h>
+  <%= form_for @seller, :html => {id: 'sellerForm'} do |f| %>
+        <label><h3> Seller Name </h3></label><br>
+        <span class="require">*</span>
+        <%= f.text_field :s_name %>
+    <%= f.submit %>
+  <% end %>
+      <br>
+<strong>
+      <%= link_to 'Back', sellers_path %>
+</strong>
+    </h>
+  </center>
+<br>
+</div>
+</body>

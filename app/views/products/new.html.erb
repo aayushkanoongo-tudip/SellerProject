@@ -1,0 +1,38 @@
+<h1>Add New Product..</h1>
+
+<%= form_for @product do |f| %>
+  <label>Model_no</label>
+  <br>
+  <%= f.number_field :model_no %>
+  <br>
+  <br>
+  <label>Name</label>
+  <br>
+  <%= f.text_field :name %>
+<br>
+<br>
+  <label>Quantity</label>
+  <br>
+  <%= f.number_field :quantity %>
+  <br>
+  <br>
+  <label>Price</label>
+  <br>
+  <%= f.number_field :price %>
+<br>
+  <br>
+  <label>  Attachment </label>
+  <br>
+  <%= f.file_field :image %>
+<br>
+  <label>  Elec.... </label>
+  <br>
+  <%= f.text_field :item_no %>
+
+  <br>
+  <br>
+  <%= button_to "Save " %>
+<% end %>
+<br>
+<br>
+ <%= button_to 'Back', products_path, method: :get%>

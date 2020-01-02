@@ -1,0 +1,28 @@
+<body style="background-color: powderblue">
+
+<div class ="container">
+  <h2>Edit the Seller Name </h2>
+  <br>
+  <h>
+    <div class="container">
+      <center>
+        <%= form_for @seller, :html => {id: 'editSellerForm'} do |t| %>
+
+          <label><h3>Seller name</h3></label><div>
+        <span class="require">*</span>
+        <%= t.text_field :s_name %></div>
+<br>
+          <%= button_to "Change" %>
+          </center>
+          </div>
+        <% end %>
+        <br>
+        <%= button_to 'Back', sellers_path, method: :get , :class => "btn-btn-primary"%>
+
+        </center>
+        </h>
+  <br>
+</div>
+</body>
+
+

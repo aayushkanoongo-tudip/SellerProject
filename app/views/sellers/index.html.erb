@@ -1,0 +1,70 @@
+<body style="background-color: powderblue">
+<div class="container" >
+  <h2><u>Sellers Page</u></h2>
+  <center>
+    <h>
+      <div align="left">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >
+          Add New Seller
+        </button>
+      </div>
+      <br>
+      <div class="container">
+  <table width="30%" border="1%" style="background-color: #EFEFEF" id="seller_Lists" class="display" autofocus="true">
+    <thead align="center">
+    <tr>
+      <th class="text-center"> <h4>User Id </h4></th>
+      <th class="text-center"> <h4>Seller's Name</h4></th>
+      <th class="text-center"> <h4> Action </h4> </th>
+    </tr>
+    </thead>
+    <body>
+    <% @Sellers.each do |seller| %>
+      <tr align="center">
+        <!--        <td><%#= link_to  seller[:name], products_path(product_id:seller.id)%></td>-->
+
+        <td> <h5><%= seller.id %></h5></td>
+
+        <td> <h5><%= link_to "#{seller.s_name}", products_path(:seller_id => seller.id)%></h5></td>
+
+        <td><h5>
+          <%= link_to 'Delete', delete_sellers_path(seller), method: :delete, data: {confirm: 'Are you sure?' } %>
+
+          <%= link_to 'Edit',edit_seller_path(seller) %>
+        </h5></td>
+      </tr>
+    <% end %>
+    </body>
+  </table>
+      </div>
+    </h>
+<br>
+  </center>
+</div>
+
+<div class="modal fade" style="background-color: powderblue" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Add New Seller</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <center>
+          <h>
+            <%= form_for @seller, url: sellers_path, :html => {id: 'sellerForm'} do |f| %>
+              <div><label><h3> Seller Name </h3></label>
+              <span class="require">*</span>
+              <%= f.text_field :s_name %>
+              </div>
+              <%= f.submit %>
+            <% end %>
+            <br>
+          </h>
+        </center>
+        <br>
+        </div>
+  </div>
+  </div></div>
